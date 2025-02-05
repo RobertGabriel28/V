@@ -8,6 +8,7 @@ let currentWord = 1;
 let score = 0;
 let timeLeft = 30;
 let timer;
+let heartRainInterval;
 
 // Event Listeners
 document.addEventListener('DOMContentLoaded', function() {
@@ -64,7 +65,7 @@ function updateTimerDisplay() {
 function shuffleLetters(wordArray) {
     const lettersContainer = document.getElementById('letters-container');
     let shuffledLetters = [...wordArray].sort(() => Math.random() - 0.5);
-
+    
     lettersContainer.innerHTML = '';
     shuffledLetters.forEach(letter => {
         const letterElement = document.createElement('div');
@@ -87,7 +88,6 @@ function selectLetter(letterElement) {
             letterElement.classList.add('wrong');
             document.getElementById('errorMessage').style.display = 'block';
             score = Math.max(0, score - 5);
-            // Resetare după 0.5 secunde
             setTimeout(() => {
                 resetLetters();
             }, 500);
@@ -155,7 +155,7 @@ function giveHint() {
     if (remainingHints > 0) {
         const correctWord = currentWord === 1 ? correctFirstWord : correctSecondWord;
         document.getElementById('indication').style.display = 'block';
-        document.getElementById('indication').textContent =
+        document.getElementById('indication').textContent = 
             `Indiciu: Primele ${hintIndex + 1} litere sunt: ${correctWord.slice(0, hintIndex + 1).join('')}`;
         hintIndex++;
         remainingHints--;
@@ -184,6 +184,63 @@ function showValentine() {
 function showYey() {
     document.getElementById('buttons-container').style.display = 'none';
     document.getElementById('yeyMessage').style.display = 'block';
+    startHeartRain();
+}
+
+function startHeartRain() {
+    // Creează mai multe inimioare la început
+    for(let i = 0; i < 10; i++) {
+        setTimeout(() => createHeart(), i * 100);
+    }
+    
+    // Continuă cu ploaia de inimioare
+    heartRainInterval = setInterval(createHeart, 100);
+}
+
+function createHeart() {
+    const heart = document.createElement('div');
+    heart.innerHTML = getRandomHeart();
+    heart.classList.add('heart');
+    
+    // Poziție random pe axa X
+    heart.style.left = Math.random() * 100 + 'vw';
+    
+    // Viteză random pentru cădere
+    const duration = Math.random() * 3 + 2;
+    heart.style.animationDuration = duration + 's';
+    
+    // Mărime random
+    const size = Math.random() * 30 + 10;
+    heart.style.fontSize = size + 'px';
+    
+    // Culoare random
+    heart.style.color = getRandomColor();
+    
+    // Rotație random
+    heart.style.transform = `rotate(${Math.random() * 360}deg)`;
+    
+    document.body.appendChild(heart);
+    
+    // Curățare
+    setTimeout(() => {
+        heart.remove();
+    }, duration * 1000);
+}
+
+function getRandomHeart() {
+    const hearts = ['❤', '💖', '💗', '💓', '💕', '💝', '💘', '💞'];
+    return hearts[Math.floor(Math.random() * hearts.length)];
+}
+
+function getRandomColor() {
+    const colors = [
+        '#ff66b2', // roz
+        '#ff3399', // roz închis
+        '#ff99cc', // roz deschis
+        '#ff0066', // magenta
+        '#ff1a75'  // roz aprins
+    ];
+    return colors[Math.floor(Math.random() * colors.length)];
 }
 
 function makeNoRun() {
