@@ -8,6 +8,7 @@ body {
     align-items: center;
     height: 100vh;
     text-align: center;
+    overflow: hidden;
 }
 
 h1, h2 {
@@ -156,4 +157,33 @@ h1, h2 {
     font-size: 1.5rem;
     color: #ff66b2;
     margin: 20px;
+}
+
+/* Stiluri pentru ploaia de inimi */
+.heart {
+    position: fixed;
+    font-size: 20px;
+    animation: fall linear forwards;
+    z-index: 1000;
+    pointer-events: none;
+    transition: transform 0.3s ease;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-100vh) translateX(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) translateX(20px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+#yeyMessage {
+    position: relative;
+    z-index: 1001;
+    font-size: 2.5rem;
+    color: #ff66b2;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
 }
