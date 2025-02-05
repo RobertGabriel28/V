@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini Game</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container" id="game-content">
+  <h1 id="intro">This site is made for Teo</h1>
+  <button class="btn" id="startBtn">Vreau sa joc!!!</button>
+  <div id="score-display">Scor: <span id="score">0</span></div>
+</div>
+
+<div id="introMessage" style="display: none;">
+  <p>Hey Teo, sper că ești bine și am să îți arăt jocul acesta pentru tine... Sper să îți placă, am lucrat ceva la el.</p>
+  <button class="btn" id="letsGoBtn">Let's Go!</button>
+</div>
+
+<div id="gameInstructions" style="display: none;">
+  <p>Urmează jocul unde trebuie să selectezi cuvintele pe care ți le zic mereu! ❤️</p>
+  <button class="btn" id="startGameBtn">Ok, Start!</button>
+</div>
+
+<div id="game-container" style="display: none;">
+  <h2 id="question">Primul cuvânt:</h2>
+  <div id="timer">Timp rămas: <span id="time">30</span>s</div>
+  <div id="letters-container"></div>
+  <button class="btn" id="submitBtn">Verifică cuvântul</button>
+  <button class="hint-btn" id="hintBtn">
+    Indiciu (<span id="remainingHints">3</span> rămase)
+  </button>
+  <div id="indication"></div>
+  <div id="result"></div>
+  <p id="errorMessage">Ai greșit, încearcă din nou!</p>
+</div>
+
+<div id="message-container" style="display: none;">
+  <h2>Da, chiar ești superba!! love u!!</h2>
+  <button class="btn" id="nextBtn">Next</button>
+</div>
+
+<div id="valentine-container" style="display: none;">
+  <h2>Do u wanna be my valentine?</h2>
+  <div id="buttons-container" style="display: none;">
+    <button class="btn btn-yes" id="yesBtn">Yes</button>
+    <button class="btn btn-no" id="noBtn">No</button>
+  </div>
+  <div id="yeyMessage" style="display: none;">Yeyyy!! 💖</div>
+</div>
+
+<div id="youtubeContainer">
+  <iframe
+          src="https://www.youtube.com/embed/AE005nZeF-A?autoplay=1"
+          allow="autoplay; encrypted-media"
+          title="Background music">
+  </iframe>
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>
